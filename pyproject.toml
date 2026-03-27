@@ -1,0 +1,7 @@
+[project]
+name = "portugas-bacalhau"
+version = "1.0.0"
+requires-python = ">=3.10"
+description = "Site institucional Portugas Bacalhau (FastAPI)"
+
+# Dependências em requirements.txt — a Vercel usa ambos para deteção e instalação.
