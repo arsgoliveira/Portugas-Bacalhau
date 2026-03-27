@@ -42,6 +42,14 @@ Inclui linha do tempo interativa (navio animado de Arouca a Santos), catálogo d
 
 ## Como rodar localmente
 
+**Diretório obrigatório:** corre `uvicorn`, `pip` e `npx vercel` **na pasta do repositório** (onde existem `app.py` e `requirements.txt`). Se o PowerShell mostrar `PS C:\Users\TeuNome>` estás na pasta pessoal — **não** é o projeto. O Python dá *Could not import module "app"* e a Vercel pode dar **EPERM** ao tentar fazer upload da pasta de utilizador inteira (inclui `AppData`).
+
+```powershell
+cd "caminho\para\Portugas-Bacalhau"
+# exemplo após clonar na área de trabalho:
+cd "$env:USERPROFILE\Desktop\PROJETOS\Portugas Bacalhau\Portugas-Bacalhau"
+```
+
 1. **Clonar o repositório**
 
    ```bash
@@ -84,9 +92,18 @@ Inclui linha do tempo interativa (navio animado de Arouca a Santos), catálogo d
 
 O workflow do GitHub (`.github/workflows`) **só corre testes e lint** — **não** faz deploy. O deploy é feito pela **integração Vercel ↔ GitHub**:
 
-1. [Vercel Dashboard](https://vercel.com/dashboard) → **Add New…** → **Project** → importa **`arsgoliveira/Portugas-Bacalhau`** (confirma o repositório na lista — não uses outro projeto por engano, ex.: `winbakk-solution`).
-2. **Root Directory:** raiz do repo (`.`). Em **Build & Deployment → Framework Preset**, escolhe **FastAPI** se não detetar sozinho.
-3. Confirma **Deploy**. Depois, cada `git push` na branch ligada (ex.: `main`) gera um novo deployment.
+### Se apagaste o projeto ou o repo não aparece na lista
+
+1. Na Vercel → **Add New…** → **Project**, se **Portugas-Bacalhau** não surgir na pesquisa, clica **Configure GitHub App** (ou [ajusta permissões](https://vercel.com/docs/deployments/git/vercel-for-github#missing-repository)).
+2. No GitHub: **Settings** → **Applications** → **Vercel** → em **Repository access** escolhe **All repositories** *ou* **Only select repositories** e marca **`arsgoliveira/Portugas-Bacalhau`** → **Save**.
+3. Volta à Vercel e importa **`arsgoliveira/Portugas-Bacalhau`**.
+
+### Criar o projeto (de novo, se apagaste o anterior)
+
+1. [Vercel Dashboard](https://vercel.com/dashboard) → **Add New…** → **Project** → importa **`arsgoliveira/Portugas-Bacalhau`**.
+2. **Project Name:** `portugas-bacalhau` (minúsculas; **sem** `--` no nome).
+3. **Root Directory:** `.` **Framework Preset:** **FastAPI** (ou *Other* se não aparecer; a Vercel usa `app.py`).
+4. **Deploy**. Cada `git push` na `main` volta a gerar deploy.
 
 **Importante:** HTML estático antigo (`index.html`, etc.) foi movido para **`legacy_static/`** para não competir com o **FastAPI** na raiz (a Vercel pode priorizar site estático se existir `index.html` no topo do repo).
 
@@ -98,7 +115,7 @@ Se o projeto na Vercel estiver ligado a **outro** repositório, em **Settings �
 
 **Acesso público:** Se o site pedir login Vercel ou der 401/404 fora do dashboard, em **Settings → Deployment Protection** desativa **Vercel Authentication** (ou define proteção só para *Preview*, não *Production*) para o domínio `.vercel.app` ficar público.
 
-**CLI (opcional):** `npx vercel deploy --prod --yes --name portugas-bacalhau` (o nome do projeto tem de ser minúsculo e **sem** `--`).
+**CLI (opcional):** na pasta do projeto (após `cd`, ver secção acima): `npx vercel deploy --prod --yes --name portugas-bacalhau` (o nome do projeto tem de ser minúsculo e **sem** `--`). **Não** corras isto em `C:\Users\...` sem `cd` para o repo.
 
 ---
 
