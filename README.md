@@ -29,7 +29,7 @@ Inclui linha do tempo interativa (navio animado de Arouca a Santos), catálogo d
 | **Validação** | [Pydantic](https://docs.pydantic.dev/) |
 | **Frontend** | HTML5, CSS3, JavaScript (vanilla) |
 | **UI / animação** | [particles.js](https://vincentgarreau.com/particles.js/), Font Awesome, Google Fonts (Playfair Display, Lato) |
-| **Deploy** | [Vercel](https://vercel.com/) — deteção nativa de [FastAPI](https://vercel.com/docs/frameworks/backend/fastapi) (`main.py` + `requirements.txt`) |
+| **Deploy** | [Vercel](https://vercel.com/) — [FastAPI](https://vercel.com/docs/frameworks/backend/fastapi) (`app.py` + `requirements.txt` + `vercel.json`) |
 
 ---
 
@@ -67,7 +67,7 @@ Inclui linha do tempo interativa (navio animado de Arouca a Santos), catálogo d
 4. **Subir o servidor**
 
    ```bash
-   python -m uvicorn main:app --reload --host 0.0.0.0 --port 8000
+   python -m uvicorn app:app --reload --host 0.0.0.0 --port 8000
    ```
 
 5. **Abrir no navegador**
@@ -92,17 +92,20 @@ O workflow do GitHub (`.github/workflows`) **só corre testes e lint** — **nã
 
 Se o projeto na Vercel estiver ligado a **outro** repositório, em **Settings → Git** reconecta a **`arsgoliveira/Portugas-Bacalhau`**.
 
-**Nota:** Foi removido o `vercel.json` antigo com `builds` + `@vercel/python` só em `main.py`. Nesse modo a Vercel **não incluía** `templates/`, `static/` e `assets/` no pacote — o deploy falhava ou o site quebrava. Com a configuração atual, a função Python inclui o projeto completo, como na [documentação](https://vercel.com/docs/functions/runtimes/python).
+**Nota:** O `vercel.json` **não** usa o modo antigo `builds` (que excluía `templates/`, etc.). Entrada da app: **`app.py`** (preferido pela Vercel em relação a `main.py`). **`redirect_slashes=False`** na app evita conflitos com o proxy da Vercel.
 
-**CLI (opcional):** na pasta do projeto, `npx vercel login` e depois `npx vercel --prod`.
+**URLs:** Usa sempre o domínio em **Settings → Domains** (ex.: `portugas-bacalhau.vercel.app`) ou o botão **Visit** no deployment. URLs longos do tipo `*-xxxx-*.vercel.app` são **por deployment** e podem deixar de funcionar quando há um deploy novo.
+
+**CLI (opcional):** `npx vercel deploy --prod --yes --name portugas-bacalhau` (o nome do projeto tem de ser minúsculo e **sem** `--`).
 
 ---
 
 ## Estrutura do repositório
 
 ```
-├── main.py              # App FastAPI, rotas HTML e API
+├── app.py               # App FastAPI, rotas HTML e API
 ├── requirements.txt
+├── vercel.json          # installCommand (sem builds legacy)
 ├── pyproject.toml       # Metadados do projeto (Vercel / Python)
 ├── .python-version      # Versão sugerida (ex.: 3.12)
 ├── templates/           # Páginas Jinja2 (base, index, produtos, sobre, contacto)

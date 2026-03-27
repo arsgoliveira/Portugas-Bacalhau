@@ -10,7 +10,12 @@ import jinja2
 # Caminho base absoluto — necessário para Vercel e outros ambientes de deploy
 BASE_DIR = Path(__file__).resolve().parent
 
-app = FastAPI(title="Portugas Bacalhau", version="1.0.0")
+# redirect_slashes=False: evita redirecionamentos inconsistentes no proxy da Vercel
+app = FastAPI(
+    title="Portugas Bacalhau",
+    version="1.0.0",
+    redirect_slashes=False,
+)
 
 app.mount("/static", StaticFiles(directory=str(BASE_DIR / "static")), name="static")
 app.mount("/assets", StaticFiles(directory=str(BASE_DIR / "assets")), name="assets")
