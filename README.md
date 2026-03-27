@@ -4,16 +4,18 @@ Site institucional da marca **Portugas Bacalhau** — sabores de Portugal em **S
 
 Inclui linha do tempo interativa (navio animado de Arouca a Santos), catálogo de produtos com cartões 3D e história de cada iguaria, slogan *«Esta delicia é portuguesa com certeza!»* e **API REST** para integrações (`/api/produtos`, `/api/status`).
 
+**Site comercial (marca):** [portugasbacalhau.com.br](https://www.portugasbacalhau.com.br)
+
 ---
 
 ## Repositório e demo
 
 | | |
 | :--- | :--- |
-| **Código no GitHub** | [github.com/arsgoliveira/Portugas--Bacalhau](https://github.com/arsgoliveira/Portugas--Bacalhau/) |
+| **Código no GitHub** | [github.com/arsgoliveira/Portugas-Bacalhau](https://github.com/arsgoliveira/Portugas-Bacalhau) |
 | **Site em produção (Vercel)** | **[portugas-bacalhau.vercel.app](https://portugas-bacalhau.vercel.app)** — nome do projeto na Vercel: **portugas-bacalhau** ([dashboard](https://vercel.com/dashboard)) |
 
-> **`DEPLOYMENT_NOT_FOUND`** significa que **não há deployment de produção válido** (nunca concluiu com sucesso ou o domínio não está ligado ao último deploy). No dashboard: **Deployments** → abre o último → se estiver **Error**, lê os **Build Logs**. Confirma **Settings → Git** (repo `Portugas--Bacalhau`, branch `main`) e **Settings → General → Framework Preset** em **FastAPI** (ou redeploy após `git push`). O URL **`https://portugas-bacalhau.vercel.app`** só responde depois de existir pelo menos um deploy **Ready** em **Production**.
+> **`DEPLOYMENT_NOT_FOUND`:** não há deployment de produção válido ou o build falhou — em **Deployments** abre o último e lê os **Build Logs**. Na Vercel, importa **`arsgoliveira/Portugas-Bacalhau`**. **Nome do projeto na Vercel:** só **minúsculas**; **não pode** conter a sequência **`--`**. Exemplo válido: `portugas-bacalhau`. Confirma **Settings → Git** (branch `main`) e **Framework Preset → FastAPI** quando aplicável.
 
 ---
 
@@ -43,8 +45,8 @@ Inclui linha do tempo interativa (navio animado de Arouca a Santos), catálogo d
 1. **Clonar o repositório**
 
    ```bash
-   git clone https://github.com/arsgoliveira/Portugas--Bacalhau.git
-   cd Portugas--Bacalhau
+   git clone https://github.com/arsgoliveira/Portugas-Bacalhau.git
+   cd Portugas-Bacalhau
    ```
 
 2. **Ambiente virtual (recomendado)**
@@ -82,13 +84,13 @@ Inclui linha do tempo interativa (navio animado de Arouca a Santos), catálogo d
 
 O workflow do GitHub (`.github/workflows`) **só corre testes e lint** — **não** faz deploy. O deploy é feito pela **integração Vercel ↔ GitHub**:
 
-1. [Vercel Dashboard](https://vercel.com/dashboard) → **Add New…** → **Project** → importa **`arsgoliveira/Portugas--Bacalhau`**.
+1. [Vercel Dashboard](https://vercel.com/dashboard) → **Add New…** → **Project** → importa **`arsgoliveira/Portugas-Bacalhau`** (confirma o repositório na lista — não uses outro projeto por engano, ex.: `winbakk-solution`).
 2. **Root Directory:** raiz do repo (`.`). Em **Build & Deployment → Framework Preset**, escolhe **FastAPI** se não detetar sozinho.
 3. Confirma **Deploy**. Depois, cada `git push` na branch ligada (ex.: `main`) gera um novo deployment.
 
 **Importante:** HTML estático antigo (`index.html`, etc.) foi movido para **`legacy_static/`** para não competir com o **FastAPI** na raiz (a Vercel pode priorizar site estático se existir `index.html` no topo do repo).
 
-Se o projeto **portugas-bacalhau** estiver ligado a **outro** repositório ou pasta errada, em **Settings → Git** reconecta a **`arsgoliveira/Portugas--Bacalhau`**.
+Se o projeto na Vercel estiver ligado a **outro** repositório, em **Settings → Git** reconecta a **`arsgoliveira/Portugas-Bacalhau`**.
 
 **Nota:** Foi removido o `vercel.json` antigo com `builds` + `@vercel/python` só em `main.py`. Nesse modo a Vercel **não incluía** `templates/`, `static/` e `assets/` no pacote — o deploy falhava ou o site quebrava. Com a configuração atual, a função Python inclui o projeto completo, como na [documentação](https://vercel.com/docs/functions/runtimes/python).
 
