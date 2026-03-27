@@ -416,12 +416,17 @@ a.api-url:hover { text-decoration: underline; }
   left: 50%;
   top: 0;
   transform: translateX(-50%);
-  font-size: 2.5rem;
   z-index: 10;
-  filter: drop-shadow(0 4px 12px rgba(212,175,55,0.5));
-  line-height: 1;
+  filter: drop-shadow(0 4px 14px rgba(212,175,55,0.45));
+  line-height: 0;
   transition: top 0.75s cubic-bezier(0.33, 1.02, 0.52, 1);
   pointer-events: none;
+}
+.timeline-ship img {
+  display: block;
+  width: clamp(48px, 12vw, 72px);
+  height: auto;
+  object-fit: contain;
 }
 .timeline-ship.timeline-ship--bob {
   animation: ship-bob 2.8s ease-in-out infinite;
