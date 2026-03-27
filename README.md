@@ -96,6 +96,8 @@ Se o projeto na Vercel estiver ligado a **outro** repositório, em **Settings �
 
 **URLs:** Usa sempre o domínio em **Settings → Domains** (ex.: `portugas-bacalhau.vercel.app`) ou o botão **Visit** no deployment. URLs longos do tipo `*-xxxx-*.vercel.app` são **por deployment** e podem deixar de funcionar quando há um deploy novo.
 
+**Acesso público:** Se o site pedir login Vercel ou der 401/404 fora do dashboard, em **Settings → Deployment Protection** desativa **Vercel Authentication** (ou define proteção só para *Preview*, não *Production*) para o domínio `.vercel.app` ficar público.
+
 **CLI (opcional):** `npx vercel deploy --prod --yes --name portugas-bacalhau` (o nome do projeto tem de ser minúsculo e **sem** `--`).
 
 ---
