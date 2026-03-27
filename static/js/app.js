@@ -200,3 +200,82 @@ document.querySelectorAll('.btn').forEach(btn => {
     btn.style.setProperty('--my', `${y}%`);
   });
 });
+
+// ── Página Sobre: navio para em cada ponto da timeline (quadros de leitura) ──
+(function initTimelineShipStops() {
+  const wrapper = document.querySelector('.timeline-wrapper');
+  const ship = document.querySelector('.timeline-ship');
+  const timeline = wrapper?.querySelector('.timeline');
+  if (!wrapper || !ship || !timeline) return;
+
+  const stops = [...timeline.querySelectorAll('.timeline-item, .timeline-ocean-separator')];
+  if (!stops.length) return;
+
+  /** Centro vertical do ponto (dot) ou do separador, em coordenadas de viewport */
+  function anchorViewportY(el) {
+    const dot = el.querySelector('.timeline-dot');
+    if (dot) {
+      const r = dot.getBoundingClientRect();
+      return r.top + r.height / 2;
+    }
+    const r = el.getBoundingClientRect();
+    return r.top + r.height / 2;
+  }
+
+  let rafId = null;
+  function updateShipTop() {
+    const wRect = wrapper.getBoundingClientRect();
+    const shipH = ship.offsetHeight || parseFloat(getComputedStyle(ship).fontSize) * 1.2;
+
+    // Linha de leitura ~centro do ecrã (ajusta o “onde o olhar para”)
+    const focusY = window.innerHeight * 0.42;
+
+    let best = null;
+    let bestDist = Infinity;
+
+    for (const el of stops) {
+      const r = el.getBoundingClientRect();
+      if (r.bottom < 32 || r.top > window.innerHeight - 32) continue;
+      const cy = anchorViewportY(el);
+      const d = Math.abs(cy - focusY);
+      if (d < bestDist) {
+        bestDist = d;
+        best = el;
+      }
+    }
+
+    if (!best) {
+      for (const el of stops) {
+        const cy = anchorViewportY(el);
+        const d = Math.abs(cy - focusY);
+        if (d < bestDist) {
+          bestDist = d;
+          best = el;
+        }
+      }
+    }
+    if (!best) return;
+
+    const ay = anchorViewportY(best);
+    let topPx = ay - wRect.top - shipH / 2;
+    topPx = Math.max(0, Math.min(topPx, wRect.height - shipH));
+    ship.style.top = `${topPx}px`;
+  }
+
+  function requestUpdate() {
+    if (rafId != null) return;
+    rafId = requestAnimationFrame(() => {
+      rafId = null;
+      updateShipTop();
+    });
+  }
+
+  window.addEventListener('scroll', requestUpdate, { passive: true });
+  window.addEventListener('resize', requestUpdate);
+  if ('ResizeObserver' in window) {
+    new ResizeObserver(requestUpdate).observe(wrapper);
+  }
+
+  requestUpdate();
+  window.addEventListener('load', requestUpdate);
+})();

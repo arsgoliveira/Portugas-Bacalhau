@@ -410,24 +410,25 @@ a.api-url:hover { text-decoration: underline; }
   border-radius: 2px;
 }
 
-/* Navio que navega pela linha do tempo */
+/* Navio — posição definida por JS (paragens nos pontos da timeline) */
 .timeline-ship {
   position: absolute;
   left: 50%;
   top: 0;
-  transform: translateX(-50%) translateY(0);
+  transform: translateX(-50%);
   font-size: 2.5rem;
   z-index: 10;
-  animation: ship-sail 8s linear infinite;
   filter: drop-shadow(0 4px 12px rgba(212,175,55,0.5));
   line-height: 1;
+  transition: top 0.75s cubic-bezier(0.33, 1.02, 0.52, 1);
+  pointer-events: none;
 }
-@keyframes ship-sail {
-  0%   { top: 0%;   transform: translateX(-55%) rotate(-3deg); }
-  25%  { top: 25%;  transform: translateX(-45%) rotate(2deg); }
-  50%  { top: 50%;  transform: translateX(-55%) rotate(-2deg); }
-  75%  { top: 75%;  transform: translateX(-45%) rotate(3deg); }
-  100% { top: 97%;  transform: translateX(-55%) rotate(-1deg); }
+.timeline-ship.timeline-ship--bob {
+  animation: ship-bob 2.8s ease-in-out infinite;
+}
+@keyframes ship-bob {
+  0%, 100% { transform: translateX(-50%) translateY(0) rotate(-2deg); }
+  50%      { transform: translateX(-50%) translateY(-4px) rotate(2deg); }
 }
 
 /* Ondas na linha do oceano */
@@ -584,7 +585,18 @@ a.api-url:hover { text-decoration: underline; }
   .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
   .footer-content { grid-template-columns: 1fr 1fr; gap: 2rem; }
   .timeline-wrapper::before { left: 1.5rem; }
-  .timeline-ship { left: 1.5rem; }
+  .timeline-ship {
+    left: 1.5rem;
+    transform: translateX(0);
+    transition: top 0.75s cubic-bezier(0.33, 1.02, 0.52, 1);
+  }
+  .timeline-ship.timeline-ship--bob {
+    animation: ship-bob-mobile 2.8s ease-in-out infinite;
+  }
+  @keyframes ship-bob-mobile {
+    0%, 100% { transform: translateX(0) translateY(0) rotate(-2deg); }
+    50%      { transform: translateX(0) translateY(-4px) rotate(2deg); }
+  }
   .timeline-item, .timeline-item:nth-child(even) { justify-content: flex-start; padding-left: 3.5rem; padding-right: 0; }
   .timeline-dot { left: 1.5rem; }
   .familia-origin { flex-direction: column; }
