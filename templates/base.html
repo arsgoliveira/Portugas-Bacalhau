@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ titulo }} — Portugas Bacalhau</title>
+    <meta name="description" content="Esta delicia é portuguesa com certeza! Bacalhau, Pastel de Belém, Bola de Berlim e muito mais. Santos-SP, Brasil.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+<!-- ── Loading Screen ─────────────────────────────────────────── -->
+<div class="loading-overlay" id="loading">
+    <img src="/assets/img/logoportugas.jpg"
+         alt="Portugas Bacalhau" class="loading-logo-img">
+    <span class="loading-text">Esta delicia é portuguesa com certeza!</span>
+    <span class="loading-sub">Santos • SP • Brasil</span>
+</div>
+
+<!-- ── Particles ──────────────────────────────────────────────── -->
+<div id="particles-js"></div>
+
+<!-- ── Toast ──────────────────────────────────────────────────── -->
+<div class="toast" id="toast"></div>
+
+<!-- ── API Badge ──────────────────────────────────────────────── -->
+<div class="api-badge">
+    <span class="api-dot"></span>
+    API Online
+</div>
+
+<!-- ── Navbar ─────────────────────────────────────────────────── -->
+<nav class="navbar" id="navbar">
+    <div class="nav-container">
+        <a href="/" class="nav-brand">
+            <img src="/assets/img/logoportugas.jpg"
+                 alt="Portugas Bacalhau" class="nav-logo">
+        </a>
+
+        <ul class="nav-links" id="navLinks">
+            <li>
+                <a href="/" class="nav-link {% if page == 'home' %}active{% endif %}">
+                    <i class="fas fa-home"></i> Início
+                </a>
+            </li>
+            <li>
+                <a href="/produtos" class="nav-link {% if page == 'produtos' %}active{% endif %}">
+                    <i class="fas fa-utensils"></i> Produtos
+                </a>
+            </li>
+            <li>
+                <a href="/sobre" class="nav-link {% if page == 'sobre' %}active{% endif %}">
+                    <i class="fas fa-ship"></i> Nossa História
+                </a>
+            </li>
+            <li>
+                <a href="/contacto" class="nav-link {% if page == 'contacto' %}active{% endif %}">
+                    <i class="fas fa-envelope"></i> Contacto
+                </a>
+            </li>
+        </ul>
+
+        <div class="nav-toggle" id="navToggle" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </div>
+    </div>
+</nav>
+
+<!-- ── Main ───────────────────────────────────────────────────── -->
+<main>
+    {% block content %}{% endblock %}
+</main>
+
+<!-- ── Footer ─────────────────────────────────────────────────── -->
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-brand">
+            <img src="/assets/img/logoportugas.jpg"
+                 alt="Portugas Bacalhau" class="footer-logo-img">
+            <p style="margin-top:0.75rem;">
+                Sabores autênticos de Portugal,<br>
+                servidos com amor em <strong style="color:var(--ouro-claro)">Santos, SP</strong>.
+            </p>
+            <p class="footer-slogan" style="margin-top:0.5rem;">
+                "Esta delicia é portuguesa com certeza!"
+            </p>
+            <div class="footer-social">
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-links">
+            <h4>Navegação</h4>
+            <ul>
+                <li><a href="/"><i class="fas fa-chevron-right"></i> Início</a></li>
+                <li><a href="/produtos"><i class="fas fa-chevron-right"></i> Produtos</a></li>
+                <li><a href="/sobre"><i class="fas fa-chevron-right"></i> Nossa História</a></li>
+                <li><a href="/contacto"><i class="fas fa-chevron-right"></i> Contacto</a></li>
+                <li><a href="/api/produtos" target="_blank"><i class="fas fa-code"></i> API REST</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-contact">
+            <h4>Onde Estamos</h4>
+            <p><i class="fas fa-map-marker-alt"></i> Santos, SP — Brasil</p>
+            <p><i class="fas fa-globe"></i> Origens: Arouca, Portugal</p>
+            <p><i class="fas fa-phone"></i> (13) 9 0000-0000</p>
+            <p><i class="fas fa-envelope"></i> contato@portugasbacalhau.com.br</p>
+            <p><i class="fas fa-clock"></i> Ter–Dom: 11h30 – 22h00</p>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p class="footer-slogan">"Esta delicia é portuguesa com certeza!"</p>
+        <p>&copy; 2024 Portugas Bacalhau &bull; Santos, SP, Brasil
+            &bull; De Arouca, Portugal, com ❤️
+            &bull; <a href="/api/status" target="_blank">API Status</a>
+        </p>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<script src="/static/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- ══ PAGE HEADER ════════════════════════════════════════════════════════════ -->
+<section class="page-header">
+    <div class="page-header-content">
+        <img src="/assets/img/logoportugas.jpg"
+             alt="Portugas Bacalhau" class="page-header-logo">
+        <h1 class="page-title">🍽️ Os Nossos Produtos</h1>
+        <p>Passe o rato sobre os cartões para descobrir a história por detrás de cada iguaria</p>
+    </div>
+</section>
+
+<!-- ══ FILTROS ════════════════════════════════════════════════════════════════ -->
+<section class="section section-creme" style="padding: 2.5rem 2rem;">
+    <div class="container">
+        <div class="filtros">
+            <button class="filtro-btn active" data-categoria="todos">
+                <i class="fas fa-th"></i> Todos
+            </button>
+            <button class="filtro-btn" data-categoria="prato_principal">
+                <i class="fas fa-fish"></i> Pratos Principais
+            </button>
+            <button class="filtro-btn" data-categoria="lanche">
+                <i class="fas fa-bread-slice"></i> Lanches
+            </button>
+            <button class="filtro-btn" data-categoria="pastelaria">
+                <i class="fas fa-cookie-bite"></i> Pastelaria
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- ══ PRODUTOS GRID ══════════════════════════════════════════════════════════ -->
+<section class="section section-dark" style="padding-top: 1rem;">
+    <div class="container">
+        <div class="produtos-grid" id="produtosGrid">
+            {% for produto in produtos %}
+            <div class="produto-card-wrapper animate-on-scroll delay-{{ loop.index0 % 4 }}"
+                 data-categoria="{{ produto.categoria }}">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+
+                        <!-- Frente -->
+                        <div class="flip-card-front">
+                            <div class="produto-imagem"
+                                 style="background: linear-gradient(135deg, {{ produto.cor }}55, {{ produto.cor }}cc);">
+                                <span class="produto-emoji">{{ produto.emoji }}</span>
+                            </div>
+                            <div class="produto-info">
+                                <div class="produto-categoria">
+                                    {% if produto.categoria == 'prato_principal' %}🍽️ Prato Principal
+                                    {% elif produto.categoria == 'lanche' %}🥪 Lanche
+                                    {% else %}🍰 Pastelaria{% endif %}
+                                </div>
+                                <div class="produto-nome">{{ produto.nome }}</div>
+                                <div class="produto-descricao">{{ produto.descricao }}</div>
+                            </div>
+                            <div class="produto-footer">
+                                <span class="produto-preco">R${{ produto.preco_brl }}</span>
+                                <button class="btn btn-azul btn-pequeno" onclick="encomendarProduto('{{ produto.nome }}')">
+                                    <i class="fas fa-shopping-cart"></i> Encomendar
+                                </button>
+                            </div>
+                            <div class="flip-hint"><i class="fas fa-sync-alt"></i> Passa o rato para a história</div>
+                        </div>
+
+                        <!-- Verso (História) -->
+                        <div class="flip-card-back">
+                            <div>
+                                <div class="historia-titulo">
+                                    <span style="font-size:2.2rem;">{{ produto.emoji }}</span>
+                                    <div>
+                                        <div style="font-size:0.75rem; opacity:0.6; letter-spacing:2px; text-transform:uppercase;">A História</div>
+                                        <div>{{ produto.nome }}</div>
+                                    </div>
+                                </div>
+                                <div class="historia-texto">{{ produto.historia }}</div>
+                            </div>
+                            <div>
+                                <div style="margin-bottom:0.5rem; color:rgba(255,248,231,0.5); font-size:0.75rem; text-transform:uppercase; letter-spacing:1px;">
+                                    Ingredientes
+                                </div>
+                                <div class="ingredientes-lista">
+                                    {% for ing in produto.ingredientes %}
+                                    <span class="ingrediente-tag">{{ ing }}</span>
+                                    {% endfor %}
+                                </div>
+                                <div class="historia-meta">
+                                    <span class="historia-tag">
+                                        <i class="fas fa-map-marker-alt"></i> {{ produto.origem }}
+                                    </span>
+                                    <span class="historia-tag">
+                                        <i class="fas fa-calendar-alt"></i> Séc. {{ produto.seculo }}
+                                    </span>
+                                    <span class="historia-tag" style="background:rgba(30,87,153,0.3); border-color:rgba(100,160,255,0.4); color:#87CEEB;">
+                                        R${{ produto.preco_brl }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- ══ API SECTION ════════════════════════════════════════════════════════════ -->
+<section class="section section-creme">
+    <div class="container" style="text-align:center;">
+        <h2 class="section-title animate-on-scroll">🚀 API REST Disponível</h2>
+        <p class="section-subtitle animate-on-scroll">
+            Aceda aos nossos produtos através da nossa API moderna
+        </p>
+        <div class="api-endpoints animate-on-scroll">
+            <div class="api-endpoint">
+                <span class="api-method get">GET</span>
+                <a href="/api/produtos" target="_blank" class="api-url">/api/produtos</a>
+                <span class="api-desc">Todos os produtos</span>
+            </div>
+            <div class="api-endpoint">
+                <span class="api-method get">GET</span>
+                <span class="api-url">/api/produtos/{id}</span>
+                <span class="api-desc">Produto por ID</span>
+            </div>
+            <div class="api-endpoint">
+                <span class="api-method post">POST</span>
+                <span class="api-url">/api/contacto</span>
+                <span class="api-desc">Enviar mensagem</span>
+            </div>
+            <div class="api-endpoint">
+                <span class="api-method get">GET</span>
+                <a href="/api/status" target="_blank" class="api-url">/api/status</a>
+                <span class="api-desc">Estado da API</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+function encomendarProduto(nome) {
+    const toast = document.getElementById('toast');
+    toast.textContent = `🐟 ${nome} adicionado! Em breve poderá encomendar online.`;
+    toast.className = 'toast show';
+    setTimeout(() => toast.classList.remove('show'), 4000);
+}
+</script>
+
+{% endblock %}

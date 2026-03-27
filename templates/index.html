@@ -1,0 +1,215 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- ══ HERO COM VÍDEO ════════════════════════════════════════════════════════ -->
+<section class="hero">
+    <!-- Vídeo de fundo -->
+    <video class="hero-video" autoplay muted loop playsinline>
+        <source src="/assets/video/cod.mp4" type="video/mp4">
+    </video>
+    <!-- Overlay azul -->
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+        <!-- Localização Santos-SP -->
+        <div class="hero-location">
+            <i class="fas fa-map-marker-alt"></i>
+            Santos — SP — Brasil &nbsp;|&nbsp;
+            <i class="fas fa-anchor"></i>
+            Origens: Arouca, Portugal
+        </div>
+
+        <!-- Logo principal animado -->
+        <img src="/assets/img/logoportugas.jpg"
+             alt="Portugas Bacalhau" class="hero-logo">
+
+        <!-- Slogan original -->
+        <p class="hero-slogan">
+            "Esta delicia é portuguesa com certeza!"
+        </p>
+
+        <h1>
+            Sabores que cruzaram<br>
+            <span class="hero-destaque">o Atlântico</span>
+        </h1>
+
+        <p>
+            Da vila de <strong>Arouca, Portugal</strong>, até ao porto de <strong>Santos, Brasil</strong> —
+            uma família trouxe nas malas os segredos da melhor gastronomia portuguesa.
+            <br>Bacalhau, Pastel de Belém, Bola de Berlim e muito mais.
+        </p>
+
+        <div class="hero-buttons">
+            <a href="/produtos" class="btn btn-ouro">
+                <i class="fas fa-utensils"></i> Ver Produtos
+            </a>
+            <a href="/sobre" class="btn btn-outline">
+                <i class="fas fa-ship"></i> Nossa História
+            </a>
+        </div>
+    </div>
+
+    <div class="scroll-indicator">
+        <i class="fas fa-chevron-down"></i>
+    </div>
+</section>
+
+<!-- ══ STATS ══════════════════════════════════════════════════════════════════ -->
+<section class="section section-dark" id="stats">
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-card animate-on-scroll">
+                <span class="stat-icon">😊</span>
+                <span class="stat-number" data-counter="10000">0</span>
+                <span class="stat-label">Clientes Satisfeitos</span>
+            </div>
+            <div class="stat-card animate-on-scroll delay-1">
+                <span class="stat-icon">🐟</span>
+                <span class="stat-number" data-counter="365">0</span>
+                <span class="stat-label">Receitas de Bacalhau</span>
+            </div>
+            <div class="stat-card animate-on-scroll delay-2">
+                <span class="stat-icon">⛵</span>
+                <span class="stat-number" data-counter="9200">0</span>
+                <span class="stat-label">km de Portugal ao Brasil</span>
+            </div>
+            <div class="stat-card animate-on-scroll delay-3">
+                <span class="stat-icon">🏰</span>
+                <span class="stat-number" data-counter="500">0</span>
+                <span class="stat-label">Anos de Tradição</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══ FEATURES ═══════════════════════════════════════════════════════════════ -->
+<section class="section section-creme">
+    <div class="container">
+        <h2 class="section-title animate-on-scroll">Porquê Somos Únicos?</h2>
+        <p class="section-subtitle animate-on-scroll">
+            Uma história de família que atravessou o oceano para trazer o melhor de Portugal a Santos
+        </p>
+
+        <div class="features-grid">
+            <div class="feature-card animate-on-scroll">
+                <span class="feature-icon">⚓</span>
+                <h3>Raízes em Arouca</h3>
+                <p>Nossa família veio de Arouca, Portugal — terra de mosteiros medievais e tradições culinárias que remontam ao século X.</p>
+            </div>
+            <div class="feature-card animate-on-scroll delay-1">
+                <span class="feature-icon">🌊</span>
+                <h3>Porto de Santos</h3>
+                <p>Santos, o maior porto da América Latina, foi a porta de entrada dos portugueses no Brasil. Aqui os sabores de Portugal encontraram nova casa.</p>
+            </div>
+            <div class="feature-card animate-on-scroll delay-2">
+                <span class="feature-icon">🐟</span>
+                <h3>Receitas Autênticas</h3>
+                <p>Cada receita foi trazida diretamente de Portugal. O bacalhau, o pastel, a bola de Berlim — exatamente como em Lisboa e no Algarve.</p>
+            </div>
+            <div class="feature-card animate-on-scroll delay-3">
+                <span class="feature-icon">🚀</span>
+                <h3>Tradição + Tecnologia</h3>
+                <p>Honramos as receitas de 500 anos mas com o conforto do século XXI: encomenda online, API e sistema digital moderno.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══ PRODUTOS DESTAQUE ═══════════════════════════════════════════════════════ -->
+<section class="section section-dark">
+    <div class="container">
+        <h2 class="section-title animate-on-scroll">As Nossas Iguarias</h2>
+        <p class="section-subtitle animate-on-scroll" style="color:rgba(255,248,231,0.75);">
+            <i class="fas fa-hand-pointer"></i> Passe o rato sobre os cartões para descobrir a história
+        </p>
+
+        <div class="produtos-grid">
+            {% for produto in produtos_destaque %}
+            <div class="flip-card animate-on-scroll delay-{{ loop.index0 }}">
+                <div class="flip-card-inner">
+
+                    <!-- Frente -->
+                    <div class="flip-card-front">
+                        <div class="produto-imagem"
+                             style="background: linear-gradient(135deg, var(--azul-escuro), {{ produto.cor }}88);">
+                            <span class="produto-emoji">{{ produto.emoji }}</span>
+                        </div>
+                        <div class="produto-info">
+                            <div class="produto-categoria">
+                                {% if produto.categoria == 'prato_principal' %}🍽️ Prato Principal
+                                {% elif produto.categoria == 'lanche' %}🥪 Lanche
+                                {% else %}🍰 Pastelaria{% endif %}
+                            </div>
+                            <div class="produto-nome">{{ produto.nome }}</div>
+                            <div class="produto-descricao">{{ produto.descricao[:110] }}…</div>
+                        </div>
+                        <div class="produto-footer">
+                            <span class="produto-preco">R${{ produto.preco_brl }}</span>
+                            <a href="/produtos" class="btn btn-azul btn-pequeno">
+                                <i class="fas fa-arrow-right"></i> Ver mais
+                            </a>
+                        </div>
+                        <div class="flip-hint"><i class="fas fa-sync-alt"></i> Vire para a história</div>
+                    </div>
+
+                    <!-- Verso (História) -->
+                    <div class="flip-card-back">
+                        <div>
+                            <div class="historia-titulo">
+                                <span style="font-size:2.5rem;">{{ produto.emoji }}</span>
+                                <span>A História</span>
+                            </div>
+                            <div class="historia-texto">{{ produto.historia }}</div>
+                        </div>
+                        <div>
+                            <div class="ingredientes-lista">
+                                {% for ing in produto.ingredientes %}
+                                <span class="ingrediente-tag">{{ ing }}</span>
+                                {% endfor %}
+                            </div>
+                            <div class="historia-meta">
+                                <span class="historia-tag"><i class="fas fa-map-marker-alt"></i> {{ produto.origem }}</span>
+                                <span class="historia-tag"><i class="fas fa-calendar-alt"></i> Séc. {{ produto.seculo }}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div style="text-align:center; margin-top:3rem;" class="animate-on-scroll">
+            <a href="/produtos" class="btn btn-ouro">
+                <i class="fas fa-th-large"></i> Ver Todos os Produtos
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ══ AZULEJOS SECTION ═══════════════════════════════════════════════════════ -->
+<section class="section section-azulejo">
+    <div class="container" style="text-align:center; position:relative; z-index:1;">
+        <img src="/assets/img/logoportugas.jpg"
+             alt="Portugas Bacalhau"
+             class="animate-on-scroll"
+             style="width:200px; height:auto; margin:0 auto 2rem; filter:drop-shadow(0 8px 30px rgba(212,175,55,0.5));">
+        <h2 class="section-title animate-on-scroll" style="color:var(--ouro-claro);">
+            Venha Provar Portugal em Santos!
+        </h2>
+        <p class="section-subtitle animate-on-scroll" style="color:rgba(255,248,231,0.8);">
+            Sabores que cruzaram 9.200 km de oceano para chegar à sua mesa.<br>
+            <em>"Esta delicia é portuguesa com certeza!"</em>
+        </p>
+        <div class="hero-buttons animate-on-scroll">
+            <a href="/contacto" class="btn btn-ouro">
+                <i class="fas fa-phone"></i> Contactar Agora
+            </a>
+            <a href="/sobre" class="btn btn-outline">
+                <i class="fas fa-ship"></i> Nossa Viagem
+            </a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

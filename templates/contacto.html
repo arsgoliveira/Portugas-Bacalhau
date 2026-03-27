@@ -1,0 +1,181 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- ══ PAGE HEADER ════════════════════════════════════════════════════════════ -->
+<section class="page-header">
+    <div class="page-header-content">
+        <img src="/assets/img/logoportugas.jpg"
+             alt="Portugas Bacalhau" class="page-header-logo">
+        <h1 class="page-title">✉️ Fale Connosco</h1>
+        <p>Santos, SP — Brasil &nbsp;🇧🇷&nbsp; | &nbsp;🇵🇹&nbsp; Origens: Arouca, Portugal</p>
+    </div>
+</section>
+
+<!-- ══ CONTACT SECTION ════════════════════════════════════════════════════════ -->
+<section class="section section-creme">
+    <div class="container">
+        <div class="contact-grid">
+
+            <!-- Formulário -->
+            <div class="animate-on-scroll">
+                <h2 style="font-family:'Playfair Display',serif; font-size:2rem; color:var(--azul); margin-bottom:0.5rem;">
+                    Envie-nos uma Mensagem
+                </h2>
+                <div style="width:60px; height:4px; background:var(--gradiente-ouro); border-radius:2px; margin-bottom:2rem;"></div>
+
+                <form id="contactForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="nome">
+                                <i class="fas fa-user"></i> Nome Completo *
+                            </label>
+                            <input type="text" id="nome" name="nome" class="form-input"
+                                   placeholder="Seu nome" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="telefone">
+                                <i class="fas fa-phone"></i> WhatsApp
+                            </label>
+                            <input type="tel" id="telefone" name="telefone" class="form-input"
+                                   placeholder="(13) 9 0000-0000">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="email">
+                            <i class="fas fa-envelope"></i> Email *
+                        </label>
+                        <input type="email" id="email" name="email" class="form-input"
+                               placeholder="seu@email.com.br" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="assunto">
+                            <i class="fas fa-tag"></i> Assunto
+                        </label>
+                        <select id="assunto" name="assunto" class="form-input">
+                            <option value="">Selecione um assunto…</option>
+                            <option value="reserva">🍽️ Reserva de Mesa</option>
+                            <option value="encomenda">📦 Encomenda / Delivery</option>
+                            <option value="evento">🎉 Evento Especial</option>
+                            <option value="catering">🥗 Catering Português</option>
+                            <option value="outro">💬 Outro</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="mensagem">
+                            <i class="fas fa-comment"></i> Mensagem *
+                        </label>
+                        <textarea id="mensagem" name="mensagem" class="form-textarea"
+                                  placeholder="Escreva a sua mensagem aqui…" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-azul btn-submit" style="width:100%; font-size:1.1rem; padding:1.2rem;">
+                        <i class="fas fa-paper-plane"></i> Enviar Mensagem
+                    </button>
+                </form>
+            </div>
+
+            <!-- Informações de Contacto -->
+            <div class="animate-on-scroll delay-2">
+                <h2 style="font-family:'Playfair Display',serif; font-size:2rem; color:var(--azul); margin-bottom:0.5rem;">
+                    Onde Estamos
+                </h2>
+                <div style="width:60px; height:4px; background:var(--gradiente-ouro); border-radius:2px; margin-bottom:2rem;"></div>
+
+                <div class="contact-items">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <strong>Morada</strong>
+                            <p>Santos — SP<br>São Paulo, Brasil 🇧🇷</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div>
+                            <strong>WhatsApp</strong>
+                            <p>(13) 9 0000-0000</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <strong>Email</strong>
+                            <p>contato@portugasbacalhau.com.br</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div>
+                            <strong>Horário de Funcionamento</strong>
+                            <p>Terça a Domingo<br>11h30 – 22h00</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-ship"></i>
+                        </div>
+                        <div>
+                            <strong>Nossas Origens</strong>
+                            <p>🇵🇹 Arouca, Portugal<br>
+                            Vila medieval no Distrito de Aveiro</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mapa Placeholder -->
+                <div class="map-placeholder">
+                    <div style="text-align:center;">
+                        <div style="font-size:3rem; margin-bottom:0.5rem;">⚓</div>
+                        <p style="color:var(--azul); font-weight:700; font-size:1.1rem;">Santos, SP — Brasil</p>
+                        <p style="color:#888; font-size:0.85rem; margin-top:0.25rem;">
+                            🇧🇷 O maior porto da América Latina
+                        </p>
+                        <p style="color:#aaa; font-size:0.8rem; margin-top:0.5rem; font-style:italic;">
+                            "A mesma cidade que recebeu os portugueses<br>que cruzaram o Atlântico"
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Redes Sociais -->
+                <div style="margin-top:2rem;">
+                    <h3 style="font-family:'Playfair Display',serif; color:var(--azul); margin-bottom:1rem;">
+                        Redes Sociais
+                    </h3>
+                    <div class="social-links">
+                        <a href="#" class="social-link instagram">
+                            <i class="fab fa-instagram"></i> Instagram
+                        </a>
+                        <a href="#" class="social-link facebook">
+                            <i class="fab fa-facebook"></i> Facebook
+                        </a>
+                        <a href="#" class="social-link whatsapp">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Azulejos decorativos no fundo -->
+<section class="section-azulejo" style="padding:3rem 2rem; text-align:center;">
+    <div style="position:relative; z-index:1;">
+        <p style="font-family:'Playfair Display',serif; font-style:italic; color:var(--ouro-claro); font-size:1.3rem;">
+            "Esta delicia é portuguesa com certeza!"
+        </p>
+        <p style="color:rgba(255,248,231,0.5); font-size:0.9rem; margin-top:0.5rem;">
+            🇵🇹 De Arouca, Portugal — para Santos, SP, Brasil 🇧🇷
+        </p>
+    </div>
+</section>
+
+{% endblock %}
