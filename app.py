@@ -35,22 +35,25 @@ templates = Jinja2Templates(env=_jinja_env)
 PRODUTOS = [
     {
         "id": 1,
-        "nome": "Bacalhau à Brás",
+        "nome": "Bolinho de Bacalhau",
         "categoria": "prato_principal",
         "preco": "12.50",
         "preco_brl": "68,00",
-        "descricao": "O prato mais emblemático de Portugal — bacalhau desfiado envolvido em ovos mexidos, batata palha crocante e azeitonas negras.",
+        "descricao": (
+            "Bolinho crocante por fora e macio por dentro — bacalhau desfiado na massa, "
+            "tempero caseiro e tradição portuguesa. Receita artesanal, 100% natural."
+        ),
         "historia": (
             "O bacalhau chegou a Portugal no século XV, trazido pelos corajosos pescadores "
             "que navegavam até à Terra Nova em busca do 'fiel amigo'. Tornou-se símbolo da "
             "resistência, da viagem e da alma portuguesa. Dizem os sábios que existem 365 receitas "
-            "— uma para cada dia do ano. O Bacalhau à Brás foi criado em Lisboa no século XIX por "
-            "um taberneiro do Bairro Alto chamado Brás, que misturou os restos que tinha na cozinha "
-            "e criou uma das maiores obras da gastronomia mundial."
+            "— uma para cada dia do ano. O bolinho de bacalhau nasceu nas tasquinhas e em casa: "
+            "sobras de bacalhau desfiado misturadas com batata, cebola e salsa, moldadas e fritas "
+            "até dourar — o petisco que acompanha conversas, festas e a mesa de domingo em Portugal e no Brasil."
         ),
-        "ingredientes": ["Bacalhau", "Ovos", "Batata palha", "Cebola", "Azeitonas", "Salsa", "Azeite"],
-        "origem": "Lisboa, Portugal",
-        "seculo": "XIX",
+        "ingredientes": ["Bacalhau", "Batata", "Cebola", "Salsa", "Ovos", "Farinha", "Azeite"],
+        "origem": "Portugal & Brasil",
+        "seculo": "Tradição",
         "emoji": "🐟",
         "cor": "#006600",
     },
