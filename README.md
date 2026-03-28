@@ -1,5 +1,14 @@
 # Portugas Bacalhau
 
+[![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)](https://www.python.org/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
+[![Jinja2](https://img.shields.io/badge/Jinja2-B4171F?style=flat&logo=jinja&logoColor=white)](https://jinja.palletsprojects.com/)
+[![Pydantic](https://img.shields.io/badge/Pydantic-E92063?style=flat&logo=pydantic&logoColor=white)](https://docs.pydantic.dev/)
+[![Vercel](https://img.shields.io/badge/Vercel-000000?style=flat&logo=vercel&logoColor=white)](https://vercel.com/)
+[![pytest](https://img.shields.io/badge/pytest-0A9EDC?style=flat&logo=pytest&logoColor=white)](https://pytest.org/)
+
+*Badges de referência rápida; o detalhe do stack está na tabela abaixo.*
+
 Aplicação web institucional da marca **Portugas Bacalhau** — gastronomia portuguesa em **Santos (SP)**, com narrativa da origem familiar em **Arouca (Portugal)** e presença digital alinhada à identidade da marca.
 
 ---
